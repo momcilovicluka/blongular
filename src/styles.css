@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+:root {
+    --primary-color: rgb(0, 225, 255);
+    --secondary-color: #0000ff;
+    --body-text-color: #333;
+    --navbar-footer-color: #000070;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 5rem;
+    color: var(--body-text-color);
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
