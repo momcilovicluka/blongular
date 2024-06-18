@@ -43,6 +43,14 @@ a:hover {
     background-color: var(--secondary-color) !important;
 }
 
+.bg-secondary-theme {
+    background-color: var(--primary-color) !important;
+}
+
+.text-theme-primary {
+    color: var(--primary-color) !important;
+}
+
 input[type = text], input[type = email] {
     width: 100%;
 }
