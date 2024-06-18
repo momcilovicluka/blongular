@@ -1,0 +1,19 @@
+footer {
+    height: fit-content;
+    padding: 15px;
+    margin-bottom: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background-color: var(--navbar-footer-color);
+}
+
+.site-logo{
+    font-size: large;
+}
+
+p {
+    color: white;
+    font-size: medium;
+}
