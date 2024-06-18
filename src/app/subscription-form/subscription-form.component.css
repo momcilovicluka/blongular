@@ -1,6 +1,7 @@
 .card {
     background-color: var(--secondary-color);
     color: white;
+    border-radius: 20px;
 }
 
 input[type = text], input[type = email] {
