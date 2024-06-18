@@ -42,3 +42,13 @@ a:hover {
 .bg-theme {
     background-color: var(--secondary-color) !important;
 }
+
+input[type = text], input[type = email] {
+    width: 100%;
+}
+
+.btn-theme {
+    border: none;
+    height: fit-content;
+    background-color: var(--primary-color);
+}
