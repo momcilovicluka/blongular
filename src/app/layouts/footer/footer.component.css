@@ -1,6 +1,7 @@
 footer {
-    height: 130px;
+    height: fit-content;
     padding: 15px;
+    margin-bottom: 0px;
     background-color: var(--navbar-footer-color);
 }
 
