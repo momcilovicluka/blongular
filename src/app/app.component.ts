@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layouts/header/header.component';
 import { CategoryNavbarComponent } from './layouts/category-navbar/category-navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { PostCardComponent } from './layouts/post-card/post-card.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, CategoryNavbarComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, CategoryNavbarComponent, PostCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
