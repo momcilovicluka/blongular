@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import './../node_modules/ngx-toastr/toastr.css';
 
 :root {
     --primary-color: #00ffff;
@@ -11,7 +12,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 5rem;
+    font-size: 1rem;
     color: var(--body-text-color);
 }
 
@@ -49,6 +50,10 @@ a:hover {
 
 .text-theme-primary {
     color: var(--primary-color) !important;
+}
+
+.text-theme-secondary {
+    color: var(--secondary-color) !important;
 }
 
 input[type = text], input[type = email] {
