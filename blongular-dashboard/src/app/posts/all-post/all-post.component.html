@@ -6,13 +6,13 @@
                     <h3 class="text-theme-center text-white">All Blog Posts</h3>
                     <p class="text-white"> From here you can manager your blog posts. </p>
 
-                    <button class="btn btn-info bg-secondary-theme m-2" routerLink = '/posts/new'>Add New Post</button>
-                    <button class="btn btn-warning m-2" routerLink = '/'>Back to Dashboard</button>
+                    <button class="btn btn-info bg-secondary-theme m-2" routerLink='/posts/new'>Add New Post</button>
+                    <button class="btn btn-warning m-2" routerLink='/'>Back to Dashboard</button>
                 </div>
             </div>
         </div>
     </div>
-
+    <br>
     <div class="row">
         <div class="col-md-12">
             <div class="card shadow-effect">
@@ -40,7 +40,9 @@
                                 <td>{{post.category.category}}</td>
                                 <td>{{convertTimestampToDate(post.createdAt) | date:'medium'}}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" routerLink="/posts/new" [queryParams]="{id: post.id}">Edit</button>
+                                    <button class="btn btn-sm btn-warning m-1" routerLink="/posts/new"
+                                        [queryParams]="{id: post.id}">Edit</button>
+                                    <button class="btn btn-sm btn-danger m-1" (click)="onDelete(post.id, post.postImgPath)">Delete</button>
                                 </td>
                             </tr>
                         </tbody>

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, doc, getDoc, updateDoc } from '@angular/fire/firestore';
-import { Storage, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, updateDoc } from '@angular/fire/firestore';
+import { Storage, deleteObject, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Observable, from, map } from 'rxjs';
 @Injectable({
@@ -71,4 +71,20 @@ export class PostsService {
 			console.error('Error updating document: ', e);
 		}
 	}
+
+  deletePost(id: string, imagePath: string): Promise<void> {
+    const imageRef = ref(this.storage, imagePath);
+    const docRef = doc(this.firestore, 'posts', id);
+
+    // Delete the image from storage
+    return deleteObject(imageRef).then(() => {
+      // After the image is deleted, delete the document from Firestore
+      return deleteDoc(docRef).then(() => {
+        console.log('Document successfully deleted!');
+      });
+    }).catch((error) => {
+      console.error('Error deleting document or image: ', error);
+      throw error;
+    });
+  }
 }
