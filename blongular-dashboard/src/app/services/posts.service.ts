@@ -72,6 +72,15 @@ export class PostsService {
 		}
 	}
 
+  markFeatured(id: string, featured: boolean): void {
+    const docRef = doc(this.firestore, `posts/${id}`);
+    updateDoc(docRef, { isFeatured: featured }).then(() => {
+      console.log('Document successfully updated!');
+    }).catch((error) => {
+      console.error('Error updating document: ', error);
+    });
+  }
+
   deletePost(id: string, imagePath: string): Promise<void> {
     const imageRef = ref(this.storage, imagePath);
     const docRef = doc(this.firestore, 'posts', id);

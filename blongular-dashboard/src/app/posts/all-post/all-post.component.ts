@@ -32,4 +32,8 @@ export class AllPostComponent {
 		id = id || '';
 		this.postService.deletePost(id, postImgPath);
 	}
+
+	onFeatured(id: string | undefined, featured: boolean): void {
+		this.postService.markFeatured(id || '', featured);
+	}
 }
