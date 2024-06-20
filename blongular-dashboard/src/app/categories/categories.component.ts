@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../services/categories.service';
 import { Category } from './../models/category';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-categories',
@@ -12,7 +13,7 @@ import { Category } from './../models/category';
     CommonModule
   ],
   templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+  styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent {
 
@@ -21,7 +22,7 @@ export class CategoriesComponent {
   formStatus: string = 'Add';
   categoryId: string | undefined = '';
 
-  constructor(private categoriesService: CategoriesService) { }
+  constructor(private categoriesService: CategoriesService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.categoriesService.loadData().subscribe(data => {
@@ -38,9 +39,11 @@ export class CategoriesComponent {
 
     if (this.formStatus === 'Add') {
       await this.categoriesService.saveData(categoryData);
+      this.toastr.success('Category ' + categoryData.category + ' added successfully!');
     } else if (this.formStatus === 'Edit') {
       await this.categoriesService.updateData(categoryData, this.categoryId);
       this.formStatus = 'Add';
+      this.toastr.success('Category ' + categoryData.category + ' updated successfully!');
     }
   }
 
