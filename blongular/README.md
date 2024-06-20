@@ -1,7 +1,4 @@
 # Blongular
-![GitHub Repo stars](https://img.shields.io/github/stars/momcilovicluka/blongular?style=for-the-badge&color=ff0050) 
-![GitHub last commit](https://img.shields.io/github/last-commit/momcilovicluka/blongular?style=for-the-badge&color=ff0050) 
-![GitHub repo size](https://img.shields.io/github/repo-size/momcilovicluka/blongular?style=for-the-badge&color=ff0050)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
 
