@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable({
 	providedIn: 'root'
 })
+
 export class CategoriesService {
 
 	firestore: Firestore = inject(Firestore);
@@ -51,7 +52,7 @@ export class CategoriesService {
 		try {
 			await deleteDoc(categoryDocRef);
 			console.log('Document successfully deleted!');
-			this.toastr.success('Category successfully deleted!');
+			this.toastr.warning('Category successfully deleted!');
 		} catch (e) {
 			console.error('Error deleting document: ', e);
 		}
