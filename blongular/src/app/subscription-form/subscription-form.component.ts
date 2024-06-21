@@ -17,17 +17,24 @@ export class SubscriptionFormComponent {
 
   constructor(private subscribersService: SubscribersService) {}
 
+ngOnInit(): void {
+  this.isEmailError = false;
+  this.isSubscribed = false;
+}
+
   onSubmit(formValue: any) {
     const subData: Sub = {
       name: formValue.name,
       email: formValue.email
     };
 
+    this.isSubscribed = false;
+
     this.subscribersService.checkSubs(subData.email).subscribe((data) => {
       if (data.length === 0) {
         this.subscribersService.saveData(subData);
-        this.isSubscribed = true;
         this.isEmailError = false;
+        this.isSubscribed = true;
       } else {
         this.isEmailError = true;
       }
