@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, limit, orderBy, query, updateDoc, where } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, getDoc, increment, limit, orderBy, query, updateDoc, where } from '@angular/fire/firestore';
 import { Storage, deleteObject, getDownloadURL, ref, uploadBytesResumable } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Observable, from, map } from 'rxjs';
@@ -52,5 +52,16 @@ export class PostsService {
     const featuredPostsQuery = query(postsCollection, where('category.categoryId', '==', categoryId));
     return collectionData(featuredPostsQuery, { idField: 'id' });
 	}
+
+  loadSimilar(categoryId: string): Observable<any[]> {
+		const postsCollection = collection(this.firestore, 'posts');
+    const featuredPostsQuery = query(postsCollection, where('category.categoryId', '==', categoryId), limit(4));
+    return collectionData(featuredPostsQuery, { idField: 'id' });
+	}
+
+  countViews(id: string): void {
+    const docRef = doc(this.firestore, 'posts', id);
+    updateDoc(docRef, { views: increment(1) });
+  }
 
 }
