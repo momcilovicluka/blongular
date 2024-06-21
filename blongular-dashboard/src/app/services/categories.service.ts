@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,7 +12,7 @@ export class CategoriesService {
 	categories$: Observable<any[]>;
 	categoriesCollection: any;
 
-	constructor(private toastr: ToastrService) {
+	constructor() {
 		this.categoriesCollection = collection(this.firestore, 'categories');
 		this.categories$ = collectionData(this.categoriesCollection);
 	}
@@ -23,7 +22,6 @@ export class CategoriesService {
 		try {
 			ref = addDoc(this.categoriesCollection, data);
 			console.log('Document successfully written!', data);
-			this.toastr.success('Category ' + data.category + ' added successfully!');
 		} catch (e) {
 			console.error('Error adding document: ', e);
 		}
@@ -41,7 +39,6 @@ export class CategoriesService {
 		try {
 			await updateDoc(categoryDocRef, editData);
 			console.log('Document successfully updated!', editData);
-			this.toastr.success('Category successfully updated!');
 		} catch (e) {
 			console.error('Error updating document: ', e);
 		}
@@ -52,7 +49,6 @@ export class CategoriesService {
 		try {
 			await deleteDoc(categoryDocRef);
 			console.log('Document successfully deleted!');
-			this.toastr.warning('Category successfully deleted!');
 		} catch (e) {
 			console.error('Error deleting document: ', e);
 		}
