@@ -3,23 +3,15 @@
         <div class="col-md-9">
 
             <div class="card shadow-effect">
-                <img src="https://i.pinimg.com/originals/b1/ae/df/b1aedf772c11d3016fe531a17893220e.gif" alt="Post Image">
+                <img src="{{postData.postImgPath}}" alt="Post Image">
                 <div class="card-body">
-                    <small class="bg-light text-danger text-center"> Design </small>
-                    <small class="bg-light text-success text-center ml-2"> Featured </small>
-                    <small class="bg-light text-info text-center ml-2"> Views - 69.420 </small>
-                    <small class="bg-light text-warning text-center ml-2"> LAST UPDATED - JUN 18, 2024</small>
+                    <small class="bg-light text-danger text-center"> {{postData.category.category}} </small>
+                    <small class="bg-light text-success text-center ml-2" *ngIf="postData.isFeatured"> Featured </small>
+                    <small class="bg-light text-info text-center ml-2"> Views - {{postData.views}} </small>
+                    <small class="bg-light text-warning text-center ml-2"> LAST UPDATED - {{convertTimestampToDate(postData.createdAt) | date:'medium'}}</small>
 
-                    <h1 class="mt-3 mb-3">HOW TO LOOP KILLERS FOR 4+ MINUTES</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed faucibus sagittis gravida. Suspendisse lacinia consequat lacus, id volutpat lectus fringilla id. Quisque ultricies metus in tristique commodo. Curabitur quis tristique ligula, non mollis augue. Nullam neque velit, laoreet ut quam quis, sollicitudin sagittis ligula. Nunc sed cursus nisi. Suspendisse sodales felis et vehicula ultricies. Maecenas ultrices tincidunt ligula viverra fringilla. Duis imperdiet dolor a elit laoreet rhoncus. Mauris nec tellus vitae urna tristique placerat. Donec pharetra congue odio. Suspendisse posuere diam quis orci dictum, non auctor mauris pretium. Mauris maximus tincidunt eros vel placerat. Mauris sapien est, sagittis ut ultrices vitae, vulputate ac nisi. Integer hendrerit turpis sed metus tincidunt, accumsan mattis nulla dignissim. Duis condimentum quam tellus, vel accumsan arcu facilisis sit amet.
-
-                        Phasellus rhoncus metus sed odio ullamcorper, nec interdum dolor malesuada. Proin pharetra lobortis mauris, sit amet feugiat enim blandit in. In eu sapien laoreet, ultrices turpis nec, porta diam. Morbi consectetur sollicitudin neque, sed aliquet ligula laoreet sit amet. Nullam lorem leo, feugiat non sapien sed, lacinia fringilla nulla. Pellentesque ullamcorper est sed placerat vestibulum. Maecenas ullamcorper dictum purus. Fusce lacus leo, suscipit sit amet bibendum id, dignissim sed lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque pulvinar sapien euismod, laoreet velit a, laoreet ipsum. Maecenas aliquet ante tellus, eu volutpat velit dictum at. Etiam faucibus justo a dui elementum, sed egestas enim elementum. Proin sit amet arcu sollicitudin, accumsan tortor quis, sollicitudin urna. Sed nibh sapien, aliquet sit amet ante in, imperdiet porta nunc. Duis metus odio, dictum id sollicitudin at, sodales et magna.
-                        
-                        Suspendisse vitae erat ac velit vehicula egestas. Morbi ultricies odio non sapien faucibus accumsan. Nam elementum auctor sapien sit amet accumsan. Ut cursus elementum vehicula. Aenean rutrum interdum risus, aliquam porta massa suscipit a. Sed quis finibus justo. Sed molestie non odio sit amet ultricies. In venenatis massa eget fermentum ultricies.
-                        
-                        Integer facilisis convallis nunc quis scelerisque. Aenean id mauris bibendum, laoreet leo quis, volutpat justo. Suspendisse luctus est velit, sed consequat urna rutrum nec. Phasellus ac augue eget turpis consectetur vestibulum. Proin scelerisque felis in feugiat tincidunt. Pellentesque ac ullamcorper lacus. Duis ullamcorper risus leo, et lobortis metus vulputate id. Pellentesque ac dignissim ligula, a eleifend mi. Proin nisi diam, lacinia sed imperdiet vel, ultrices vel sapien. Morbi sed interdum nulla.
-                        
-                        Vestibulum auctor ac tellus in tincidunt. Cras semper orci sit amet tortor tincidunt, ac hendrerit velit auctor. Cras blandit justo id justo sollicitudin, sed sagittis felis fringilla. Maecenas malesuada non erat vel lacinia. Curabitur et lobortis mi. Mauris consequat diam et mauris dictum laoreet. Quisque consequat imperdiet purus ac ultricies. Curabitur in aliquet nibh, a posuere purus. Phasellus pharetra cursus justo, sed facilisis elit ullamcorper a. Morbi eget ligula in ipsum mollis laoreet. Phasellus faucibus tortor nisl, nec ultrices velit varius in.</p>
+                    <h1 class="mt-3 mb-3">{{postData.title}}</h1>
+                    <p [innerHtml] = "postData.content"></p>
                 </div>
             </div>
 
@@ -28,9 +20,9 @@
 
         </div>
         <div class="col-md-3">
-            <app-post-card></app-post-card>
-            <app-post-card></app-post-card>
-            <app-post-card></app-post-card>
+            <div *ngFor="let similarPost of similarPostsArray">
+                <app-post-card [postData]="similarPost"></app-post-card>
+            </div>
         </div>
     </div>
 </div>
