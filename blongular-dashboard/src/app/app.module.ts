@@ -7,10 +7,10 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { AppComponent } from './app.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IndividualConfig, ToastrModule, ToastrService, provideToastr } from 'ngx-toastr';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CommonModule } from '@angular/common';
 import { provideStorage } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -24,15 +24,13 @@ import { provideStorage } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebaseConfig), // Initialize Firebase with config
     AngularFirestoreModule, // Import Firestore module
     FormsModule,
-    ToastrModule.forRoot(),
     AngularEditorModule,
     ReactiveFormsModule,
     CommonModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
-    provideAnimations(), // required animations providers
-    provideToastr(),
   ],
 })
 export class AppModule { }
