@@ -16,7 +16,7 @@ export const routes: Routes = [
         component: SingleCategoryComponent
     },
     {
-        path: 'post',
+        path: 'post/:id',
         component: SinglePostComponent
     },
     {
