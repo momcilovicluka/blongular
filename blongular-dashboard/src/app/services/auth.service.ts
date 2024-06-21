@@ -12,6 +12,7 @@ export class AuthService {
   private router = inject(Router);
 
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoggedInGuard: boolean = false;
 
   constructor() { }
 
@@ -21,6 +22,7 @@ export class AuthService {
         console.log('User logged in: ', userCredential.user);
         this.loadUser();
         this.loggedIn.next(true);
+        this.isLoggedInGuard = true;
         this.router.navigate(['/dashboard']);
       });
     } catch (error) {
@@ -38,12 +40,15 @@ export class AuthService {
     this.auth.signOut();
     localStorage.removeItem('user');
     this.loggedIn.next(false);
+    this.isLoggedInGuard = false;
     this.router.navigate(['']);
   }
 
   isLoggedIn() {
-    if (localStorage.getItem('user'))
+    if (localStorage.getItem('user')){
       this.loggedIn.next(true);
+      this.isLoggedInGuard = true;
+    }
     return this.loggedIn.asObservable();
   }
 }
