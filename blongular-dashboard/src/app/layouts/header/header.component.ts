@@ -9,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  userEmail: string = '';
+
+  ngOnInit(): void {
+    const user = localStorage.getItem('user');
+    if (user !== null) {
+      this.userEmail = JSON.parse(user).email;
+    } else {
+      this.userEmail = '';
+    }
+  }
 }
