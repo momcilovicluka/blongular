@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, deleteDoc, doc, DocumentReference, DocumentData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,5 +17,15 @@ export class SubscribersService {
 
 	loadData(): Observable<any[]> {
 		return collectionData(this.categoriesCollection, { idField: 'id' });
+	}
+
+  deleteData(id: string | undefined) {
+	const docRef: DocumentReference<unknown, DocumentData> = doc(this.categoriesCollection, id);
+		try {
+			deleteDoc(docRef);
+			console.log('Document successfully deleted!');
+		} catch (e) {
+			console.error('Error deleting document: ', e);
+		}
 	}
 }

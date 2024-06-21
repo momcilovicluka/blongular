@@ -22,4 +22,9 @@ export class SubscribersComponent {
       this.subscribersArray = data;
     });
   }
+
+  onDelete(id: string | undefined) {
+    console.log("id: ", id);
+    this.subscribersService.deleteData(id);
+  }
 }
