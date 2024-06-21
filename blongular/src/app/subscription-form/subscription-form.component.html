@@ -4,17 +4,50 @@
             <h3>SUBSCRIPTION FORM</h3>
             <p class="m-auto subs-text">Subscribe to our newsletter and get the latest news and updates</p>
 
-            <form action="" class="form-inline d-inline-flex mb-2">
+            <div class="alert alert-danger mt-3" *ngIf="isEmailError">
+                Email is already in use
+            </div>
+
+            <div class="alert alert-info mt-3" *ngIf="isSubscribed">
+                Thank you for subscribing to our newsletter service. Stay tuned for awesome blog posts!
+            </div>
+
+            <form #subForm=ngForm (ngSubmit)="onSubmit(subForm.value)" class="form-inline d-inline-flex mb-2">
                 <div class="form-group col-md-5 m-1">
-                    <input type="text" class="form-control shadow-effect" placeholder="Your Name">
+                    <input 
+                    type="text" 
+                    class="form-control shadow-effect" 
+                    placeholder="Your Name" 
+                    name="name"
+                    #Name="ngModel" 
+                    ngModel
+                    required 
+                    [ngClass]="{'is-invalid': Name.touched && Name.invalid}">
+
+                    <div class="text-danger" *ngIf="Name.touched && Name.invalid">
+                        <div *ngIf="Name.errors?.['required']">Name is required</div>
+                    </div>
                 </div>
 
                 <div class="form-group col-md-5 m-1">
-                    <input type="email" class="form-control shadow-effect" placeholder="Your Email">
+                    <input 
+                    type="email" 
+                    class="form-control shadow-effect"
+                    placeholder="Your Email" 
+                    name="email"
+                    #Email="ngModel" 
+                    ngModel 
+                    required 
+                    email
+                    [ngClass]="{'is-invalid': Email.touched && Email.invalid}">
+                    <div class="text-danger" *ngIf="Email.touched && Email.invalid">
+                        <div *ngIf="Name.errors?.['required']">Email is required</div>
+                        <div *ngIf="Name.errors?.['email']">Please enter a valid email address</div>
+                    </div>
                 </div>
 
                 <div class="col-md-2 m-1">
-                    <button class="btn btn-info btn-block btn-theme">SUBSCRIBE</button>
+                    <button class="btn btn-info btn-block btn-theme" [disabled]="subForm.invalid">SUBSCRIBE</button>
                 </div>
             </form>
         </div>
