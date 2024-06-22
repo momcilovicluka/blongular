@@ -1,0 +1,62 @@
+<div id="animeCarousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <h3 class="text-info">Here are this season's top anime:</h3>
+        <div *ngFor="let anime of topAnimes; let i = index" [class.active]="i === 0" class="carousel-item">
+            <div class="row no-gutters align-items-center">
+                <div class="col-lg-4 col-md-5 col-sm-12">
+                    <img [src]="anime.images.jpg.large_image_url" class="d-block w-100 rounded-start-4 rounded-end-4"
+                        alt="{{anime.title}}">
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12">
+                    <div class="carousel-caption d-inline d-sm-block text-left">
+                        <h5>
+                            <span class="title-english">{{anime.title_english}}</span> |
+                            <span class="title-japanese">{{anime.title_japanese}}</span> |
+                            <span class="title">{{anime.title}}</span>
+                        </h5>
+                        <h6>Genres:</h6>
+                        <ul class="genres-list">
+                            <li *ngFor="let genre of anime.genres">
+                                <a [href]="genre.url" target="_blank">{{ genre.name }}</a>
+                            </li>
+                        </ul>
+                        <p>Rank: <small class="bg-dark text-primary text-center">{{anime.rank}}</small></p>
+                        <p>Type: <small class="bg-dark text-success text-center">{{anime.type}}</small></p>
+                        <p>Score: <small class="bg-dark text-danger text-center">{{anime.score}}</small></p>
+                        <p>Season: <small class="bg-dark text-warning text-center">{{anime.season}}</small></p>
+                        <p>Episodes: <small class="bg-dark text-info text-center">{{anime.episodes}}</small></p>
+                        <p>Source: <small class="bg-dark text-secondary text-center">{{anime.source}}</small></p>
+                        <p>Popularity: <small class="bg-dark text-info text-center">{{anime.popularity}}</small></p>
+                        <p>Favorites: <small class="bg-dark text-info text-center">{{anime.favorites}}</small></p>
+                        <p>Air: <small class="bg-dark text-info text-center">{{anime.aired.string}}</small></p>
+                        <p>Rating: <small class="bg-dark text-info text-center">{{anime.rating}}</small></p>
+                        <a [href]="anime.url" target="_blank" class="btn btn-primary btn-sm mt-2">My Anime List Page</a>
+                        <div class="mt-3">
+                            <a [href]="anime.trailer.url" target="_blank" class="trailer-link">
+                                <img [src]="anime.trailer.images.large_image_url" class="trailer-image"
+                                alt="Trailer for {{anime.title}}">
+                            </a>
+                            <p>Trailer</p>
+                        </div>
+                        <div class="synopsis-box">
+                            <button class="btn btn-info" type="button" data-toggle="collapse" [attr.data-target]="'#synopsisCollapse' + i" aria-expanded="false" aria-controls="synopsisCollapse">
+                                Synopsis
+                            </button>
+                            <div class="collapse" [attr.id]="'synopsisCollapse' + i">
+                                <p class="synopsis">{{ anime.synopsis }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#animeCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+    </a>
+    <a class="carousel-control-next" href="#animeCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+    </a>
+</div>
