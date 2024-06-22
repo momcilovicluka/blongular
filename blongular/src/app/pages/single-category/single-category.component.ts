@@ -4,11 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { PostsService } from '../../services/posts.service';
 import { Post } from '../../model/post';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { TopAnimeComponent } from '../top-anime/top-anime.component';
 
 @Component({
   selector: 'app-single-category',
   standalone: true,
-  imports: [PostCardComponent, CommonModule],
+  imports: [PostCardComponent, CommonModule, HttpClientModule, TopAnimeComponent],
   templateUrl: './single-category.component.html',
   styleUrl: './single-category.component.css'
 })

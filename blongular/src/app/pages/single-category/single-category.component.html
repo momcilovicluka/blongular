@@ -1,7 +1,8 @@
-<div class="bg-theme p-5">
-    <div class="container">
+<div class="bg-theme p-5 w-100">
+    <div class="container w-100">
         <h1 class="text-white"> {{categoryObject.category}} </h1>
-        <p class="text-white"> Here are post of the selected category </p>
+        <app-top-anime *ngIf="categoryObject.category === 'Anime'"></app-top-anime>
+        <p class="text-white mb-0 mt-5"> Here are posts of the selected category:</p>
     </div>
 </div>
 
