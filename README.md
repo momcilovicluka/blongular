@@ -8,4 +8,4 @@ App made for NWP
 
 Front Deployment: https://blongular.vercel.app/
 
-Back Dashboard deployment: https://blongular-6y81irx5c-momciloviclukas-projects.vercel.app/
+Back Dashboard deployment: https://blongular-dashboard.vercel.app/
